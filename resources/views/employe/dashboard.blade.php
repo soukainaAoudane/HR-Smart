@@ -1,5 +1,6 @@
 {{-- resources/views/employe/dashboard.blade.php --}}
 <x-app-layout>
+    {{-- Dashobard  --}}
     <div class="container">
         <div class="row mb-4">
             <div class="col-12">
@@ -33,6 +34,7 @@
                     </div>
                 </a>
             </div>
+
             <div class="col-md-3 col-6">
                 <a href="mesDeplacements" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -101,8 +103,9 @@
                     {{ $tachesEnCours->count() }} tâches en cours
                 </span>
                 <span class="text-decoration-underline text-primary"><a href="{{ route('employe.tache.index') }}">Voir
-                        toutes les tâches</a></span>
+                        toutes les tâc hes</a></span>
             </div>
+
             <div class="card-body">
                 @if (isset($taches) && $taches->count() > 0)
                     @foreach ($taches as $tache)

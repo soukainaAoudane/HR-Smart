@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CongeController extends Controller
 {
+    // Methode index:
     public function index()
     {
         $manager = Auth::user();
@@ -31,6 +32,7 @@ class CongeController extends Controller
         return view('manager.conge.index', compact('demandes'));
     }
 
+    // Methode show:
     public function show($id)
     {
         $manager     = Auth::user();
@@ -51,8 +53,8 @@ class CongeController extends Controller
 
         return view('manager.conge.show', compact('demande', 'congesSimultanes', 'totalEquipe', 'impactPourcentage'));
     }
-    
 
+    // Methode accepter
     public function accepter($id)
     {
         $manager     = Auth::user();
@@ -79,6 +81,7 @@ class CongeController extends Controller
         ->with('success', 'Congé accepté. ' . $duree . ' jour déduits du solde de ' . $demande->user->name);
 }
 
+    // Methode refuser:
     public function refuser(Request $request, $id)
     {
         $request->validate([

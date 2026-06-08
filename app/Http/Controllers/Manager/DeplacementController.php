@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class DeplacementController extends Controller
 {
     /**
-     * Liste des déplacements en attente
+     * Methode index:
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class DeplacementController extends Controller
     }
 
     /**
-     * Détail d'un déplacement
+     * Methode show:
      */
     public function show($id)
     {
@@ -41,7 +41,7 @@ class DeplacementController extends Controller
     }
 
     /**
-     * Accepter un déplacement
+     * Methode accepter:
      */
     public function accepter($id)
     {
@@ -63,7 +63,7 @@ class DeplacementController extends Controller
     }
 
     /**
-     * Refuser un déplacement
+     * Methode refuser: 
      */
     public function refuser(Request $request, $id)
     {

@@ -1,4 +1,5 @@
 <x-app-layout>
+    {{-- Affichages des taâches --}}
     <div class="container py-4">
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-header text-white rounded-top-4" style="background: #1e3a5f; border-bottom: none;">
@@ -24,7 +25,7 @@
                                     <tr>
                                         <td><strong>{{ $tache->titre }}</strong><br>
                                             <small
-                                                class="text-muted">{{ $tache->description ?? 'Pas de description' }}</small>
+                                                class="text-muted">{{ $tache->description ?? 'Pas de descprotion' }}</small>
                                         </td>
                                         <td>
                                             <span

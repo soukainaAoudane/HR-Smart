@@ -1,4 +1,5 @@
 <x-app-layout>
+    {{-- Formulaire de modification de tache --}}
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -69,9 +70,9 @@
                                     <div class="mb-3">
                                         <label class="form-label fw-bold">Statut</label>
                                         <select name="statut" class="form-select rounded-3">
-                                            <option value="todo" {{ $tache->statut == 'todo' ? 'selected' : '' }}>📌 À faire</option>
-                                            <option value="doing" {{ $tache->statut == 'doing' ? 'selected' : '' }}>🔄 En cours</option>
-                                            <option value="done" {{ $tache->statut == 'done' ? 'selected' : '' }}>✅ Terminée</option>
+                                            <option value="todo" {{ $tache->statut == 'todo' ? 'selected' : '' }}>À faire</option>
+                                            <option value="doing" {{ $tache->statut == 'doing' ? 'selected' : '' }}>En cours</option>
+                                            <option value="done" {{ $tache->statut == 'done' ? 'selected' : '' }}>Terminée</option>
                                         </select>
                                     </div>
                                 </div>

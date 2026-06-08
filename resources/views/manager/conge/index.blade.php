@@ -1,5 +1,6 @@
 {{-- resources/views/manager/conge/index.blade.php --}}
 <x-app-layout>
+    {{-- Affichage des congés --}}
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -68,7 +69,7 @@
                                                 <span class="badge bg-warning text-dark">En attente</span>
                                             </td>
                                             <td>
-                                                <a href="{{ route('manager.conges.show', $demande->id) }}" 
+                                                <a href="{{ route('manager.conges.show', $demande->id) }}"
                                                    class="btn btn-sm btn-primary">
                                                     <i class="fas fa-eye"></i> Traiter
                                                 </a>

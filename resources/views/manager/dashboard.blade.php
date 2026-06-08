@@ -1,5 +1,6 @@
 {{-- resources/views/manager/dashboard.blade.php --}}
 <x-app-layout>
+    {{-- Dashboard --}}
     <div class="container">
         <div class="row mb-4">
             <div class="col-12">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TacheController extends Controller
 {
+    // Methode index:
     public function index()
     {
         $user   = Auth::user();
@@ -18,6 +19,7 @@ class TacheController extends Controller
         return view('employe.tache.index', compact('taches'));
     }
 
+    // Methode update
     public function update(Request $request, $id)
     {
         $user  = Auth::user();

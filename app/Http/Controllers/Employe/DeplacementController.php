@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DeplacementController extends Controller
 {
-    //
+    // Methode index:
     public function index()
     {
         $user         = Auth::user();
@@ -16,11 +16,13 @@ class DeplacementController extends Controller
         return view('employe.deplacement.index', compact('deplacements'));
     }
 
+    // Methode create:
     public function create()
     {
         return view('employe.deplacement.create');
     }
 
+    // Methode store
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -60,9 +62,9 @@ class DeplacementController extends Controller
         ]);
 
         return redirect()->route('employe.deplacement.index')->with('success', 'Demandee de déplacement evnoyé avec success');
-
     }
 
+    // Methode show
     public function show($id)
     {
         $user        = Auth::user();
@@ -71,6 +73,7 @@ class DeplacementController extends Controller
         return view('employe.deplacement.show', compact('deplacement'));
     }
 
+    // Methode destroy:
     public function destroy($id)
     {
         $user        = Auth::user();

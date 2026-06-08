@@ -10,6 +10,7 @@
 
      class DashboardController extends Controller
     {
+        // Methode index:
         public function index()
         {
             $user = Auth::user();
@@ -32,7 +33,7 @@
 
             $derniersDemandes = Conge::with('user')->orderBy('created_at', 'desc')->limit(5)->get();
 
-            
+
             return view('admin.dashboard', compact('totalEmployes', 'totalManagers', 'totalAdmins', 'totalCompetences', 'congesEnAttente', 'congesApprouves', 'congesRefuses', 'chargeMoyenne', 'derniersEmployes', 'derniersDemandes'));
         }
     }

@@ -195,108 +195,108 @@
         </div>
 
         <nav>
-    <?php if(auth()->guard()->check()): ?>
-        <?php if(Auth::user()->isEmploye()): ?>
-    <a href="<?php echo e(route('employe.dashboard')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.dashboard') ? 'active' : ''); ?>">
-        <i class="fas fa-tachometer-alt"></i>
-        <span>Tableau de bord</span>
-    </a>
-    <a href="<?php echo e(route('employe.conge.create')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.conge.create') ? 'active' : ''); ?>">
-        <i class="fas fa-calendar-plus"></i>
-        <span>Demander congé</span>
-    </a>
-    <a href="<?php echo e(route('employe.conge.index')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.conge.index') ? 'active' : ''); ?>">
-        <i class="fas fa-calendar-alt"></i>
-        <span>Mes congés</span>
-    </a>
-    <a href="<?php echo e(route('employe.deplacement.index')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.deplacement.index') ? 'active' : ''); ?>">
-        <i class="fas fa-plane"></i>
-        <span>Mes déplacements</span>
-    </a>
-    <a href="<?php echo e(route('employe.deplacement.create')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.deplacement.create') ? 'active' : ''); ?>">
-        <i class="fas fa-plus-circle"></i>
-        <span>Demander déplacement</span>
-    </a>
-    <a href="<?php echo e(route('employe.tache.index')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.tache.index') ? 'active' : ''); ?>">
-        <i class="fas fa-tasks"></i>
-        <span>Mes tâches</span>
-    </a>
-    <a href="<?php echo e(route('employe.competences')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.competences') ? 'active' : ''); ?>">
-        <i class="fas fa-star"></i>
-        <span>Mes compétences</span>
-    </a>
-    <a href="<?php echo e(route('employe.profil')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.profil') ? 'active' : ''); ?>">
-        <i class="fas fa-user-circle"></i>
-        <span>Mon profil</span>
-    </a>
-<?php endif; ?>
+            <?php if(auth()->guard()->check()): ?>
+                <?php if(Auth::user()->isEmploye()): ?>
+                    <a href="<?php echo e(route('employe.dashboard')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.dashboard') ? 'active' : ''); ?>">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tableau de bord</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.conge.create')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.conge.create') ? 'active' : ''); ?>">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Demander congé</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.conge.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.conge.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Mes congés</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.deplacement.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.deplacement.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-plane"></i>
+                        <span>Mes déplacements</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.deplacement.create')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.deplacement.create') ? 'active' : ''); ?>">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Demander déplacement</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.tache.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.tache.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-tasks"></i>
+                        <span>Mes tâches</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.competences')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.competences') ? 'active' : ''); ?>">
+                        <i class="fas fa-star"></i>
+                        <span>Mes compétences</span>
+                    </a>
+                    <a href="<?php echo e(route('employe.profil')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('employe.profil') ? 'active' : ''); ?>">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Mon profil</span>
+                    </a>
+                <?php endif; ?>
 
-        <?php if(Auth::user()->isManager()): ?>
-    <a href="<?php echo e(route('manager.dashboard')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.dashboard') ? 'active' : ''); ?>">
-        <i class="fas fa-tachometer-alt"></i>
-        <span>Tableau de bord</span>
-    </a>
-    <a href="<?php echo e(route('manager.conges.index')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.conges.index') ? 'active' : ''); ?>">
-        <i class="fas fa-calendar-check"></i>
-        <span>Valider congés</span>
-    </a>
-    <a href="<?php echo e(route('manager.deplacement.index')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.deplacement.index') ? 'active' : ''); ?>">
-        <i class="fas fa-plane"></i>
-        <span>Valider déplacements</span>
-    </a>
-    <a href="<?php echo e(route('manager.tache.index')); ?>"
-        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.tache.index') ? 'active' : ''); ?>">
-        <i class="fas fa-tasks"></i>
-        <span>Gestion tâches</span>
-    </a>
-    <a href=""
-        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.projet.index') ? 'active' : ''); ?>">
-        <i class="fas fa-project-diagram"></i>
-        <span>Gestion projets</span>
-    </a>
-<?php endif; ?>
+                <?php if(Auth::user()->isManager()): ?>
+                    <a href="<?php echo e(route('manager.dashboard')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.dashboard') ? 'active' : ''); ?>">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tableau de bord</span>
+                    </a>
+                    <a href="<?php echo e(route('manager.conges.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.conges.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Valider congés</span>
+                    </a>
+                    <a href="<?php echo e(route('manager.deplacement.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.deplacement.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-plane"></i>
+                        <span>Valider déplacements</span>
+                    </a>
+                    <a href="<?php echo e(route('manager.tache.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.tache.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-tasks"></i>
+                        <span>Gestion tâches</span>
+                    </a>
+                    <a href=""
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('manager.projet.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Gestion projets</span>
+                    </a>
+                <?php endif; ?>
 
-        <?php if(Auth::user()->isAdmin()): ?>
-            <a href="<?php echo e(route('admin.dashboard')); ?>"
-                class="nav-link-sidebar <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Tableau de bord</span>
-            </a>
-            <a href="<?php echo e(route('admin.employes.index')); ?>"
-                class="nav-link-sidebar <?php echo e(request()->routeIs('admin.employes.index') ? 'active' : ''); ?>">
-                <i class="fas fa-users"></i>
-                <span>Gestion employés</span>
-            </a>
-            <a href="<?php echo e(route('admin.competences.index')); ?>"
-                class="nav-link-sidebar <?php echo e(request()->routeIs('admin.competences.index') ? 'active' : ''); ?>">
-                <i class="fas fa-star"></i>
-                <span>Gestion compétences</span>
-            </a>
-        <?php endif; ?>
-    <?php endif; ?>
+          <?php if(Auth::user()->isAdmin()): ?>
+                    <a href="<?php echo e(route('admin.dashboard')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tableau de bord</span>
+                    </a>
+                    <a href="<?php echo e(route('admin.employes.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('admin.employes.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-users"></i>
+                        <span>Gestion employés</span>
+                    </a>
+                    <a href="<?php echo e(route('admin.competences.index')); ?>"
+                        class="nav-link-sidebar <?php echo e(request()->routeIs('admin.competences.index') ? 'active' : ''); ?>">
+                        <i class="fas fa-star"></i>
+                        <span>Gestion compétences</span>
+                    </a>
+                <?php endif; ?>
+            <?php endif; ?>
 
-    <hr class="mx-3 my-3" style="border-color: #e0e0e0;">
+            <hr class="mx-3 my-3" style="border-color: #e0e0e0;">
 
-    <form method="POST" action="<?php echo e(route('logout')); ?>">
-        <?php echo csrf_field(); ?>
-        <button type="submit" class="nav-link-sidebar btn-logout"
-            style="width: calc(100% - 24px); margin: 0 12px; background: none; border: none; cursor: pointer;">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Déconnexion</span>
-        </button>
-    </form>
-</nav>
+            <form method="POST" action="<?php echo e(route('logout')); ?>">
+                <?php echo csrf_field(); ?>
+                <button type="submit" class="nav-link-sidebar btn-logout"
+                    style="width: calc(100% - 24px); margin: 0 12px; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </button>
+            </form>
+        </nav>
     </div>
 
     <div class="main-content">

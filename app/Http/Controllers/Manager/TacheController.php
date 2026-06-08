@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class TacheController extends Controller
 {
     /**
-     * Liste des tâches de l'équipe
+     * Methode index:
      */
     public function index()
     {
@@ -26,7 +26,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Formulaire de création
+     * Methode create:
      */
     public function create()
     {
@@ -44,7 +44,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Enregistrer une tâche
+     * Methode store
      */
     public function store(Request $request)
     {
@@ -59,7 +59,7 @@ class TacheController extends Controller
             'deadline'      => 'required|date|after_or_equal:today',
         ]);
 
-        // Vérifier que l'employé appartient bien au manager
+        // Vérifier que l'employé appartient au manager
         $employesIds = $manager->employes()->pluck('id');
         if (! in_array($request->assignee_a, $employesIds->toArray())) {
             return back()->with('error', 'Employé non autorisé');
@@ -84,7 +84,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Afficher le détail d'une tâche
+     * Methode show
      */
     public function show($id)
     {
@@ -97,7 +97,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Formulaire d'édition
+     * Methode edit
      */
     public function edit($id)
     {
@@ -112,7 +112,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Mettre à jour une tâche
+     * Methode update
      */
     public function update(Request $request, $id)
     {
@@ -155,7 +155,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Supprimer une tâche
+     * Methode destroy:
      */
     public function destroy($id)
     {
@@ -174,7 +174,7 @@ class TacheController extends Controller
     }
 
     /**
-     * Recalculer la charge d'un employé
+     * Function recalculerCharege:
      */
     private function recalculerCharge($employeId)
     {

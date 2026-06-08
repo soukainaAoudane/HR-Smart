@@ -1,4 +1,5 @@
 <x-app-layout>
+    {{-- Affichage d'un monot tache --}}
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -11,16 +12,17 @@
                     </div>
                     <div class="card-body p-4">
 
-                        <div class="alert mb-4 rounded-3 text-center fw-bold fs-5 
-                            @if($tache->statut == 'todo') alert-warning text-dark
+                        <div
+                            class="alert mb-4 rounded-3 text-center fw-bold fs-5
+                            @if ($tache->statut == 'todo') alert-warning text-dark
                             @elseif($tache->statut == 'doing') alert-info
                             @else alert-success @endif">
-                            @if($tache->statut == 'todo')
-                                📌 Statut : À faire
+                            @if ($tache->statut == 'todo')
+                                Statut : À faire
                             @elseif($tache->statut == 'doing')
-                                🔄 Statut : En cours
+                                tatut : En cours
                             @else
-                                ✅ Statut : Terminée
+                                tatut : Terminée
                             @endif
                         </div>
 
@@ -60,7 +62,7 @@
                                     <small class="text-muted text-uppercase d-block mb-1">Deadline</small>
                                     <span class="{{ $tache->est_en_retard ? 'text-danger fw-bold' : '' }}">
                                         {{ Carbon\Carbon::parse($tache->deadline)->format('d/m/Y') }}
-                                        @if($tache->est_en_retard)
+                                        @if ($tache->est_en_retard)
                                             <i class="fas fa-exclamation-triangle ms-1"></i> (En retard)
                                         @endif
                                     </span>
@@ -69,15 +71,17 @@
                         </div>
 
                         <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                            <a href="{{ route('manager.tache.index') }}" class="btn btn-outline-secondary rounded-pill px-4">
+                            <a href="{{ route('manager.tache.index') }}"
+                                class="btn btn-outline-secondary rounded-pill px-4">
                                 <i class="fas fa-arrow-left me-2"></i> Retour
                             </a>
                             <div>
-                                <a href="{{ route('manager.tache.edit', $tache->id) }}" class="btn rounded-pill px-4" style="background: #ffc107; color: #000;">
+                                <a href="{{ route('manager.tache.edit', $tache->id) }}" class="btn rounded-pill px-4"
+                                    style="background: #ffc107; color: #000;">
                                     <i class="fas fa-edit me-2"></i> Modifier
                                 </a>
-                                <form action="{{ route('manager.tache.destroy', $tache->id) }}" method="POST" class="d-inline" 
-                                      onsubmit="return confirm('Supprimer cette tâche ?')">
+                                <form action="{{ route('manager.tache.destroy', $tache->id) }}" method="POST"
+                                    class="d-inline" onsubmit="return confirm('Supprimer cette tâche ?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger rounded-pill px-4">

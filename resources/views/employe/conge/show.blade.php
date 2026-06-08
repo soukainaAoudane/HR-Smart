@@ -1,5 +1,6 @@
 {{-- resources/views/employe/conge/show.blade.php --}}
 <x-app-layout>
+    {{-- Affichage de mono congé --}}
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -13,11 +14,11 @@
                     <div class="card-body p-4">
 
                         {{-- Statut en évidence --}}
-                        <div class="alert mb-4 rounded-3 text-center fw-bold fs-5 
+                        <div class="alert mb-4 rounded-3 text-center fw-bold fs-5
                             @if($conge->statut == 'pending') alert-warning text-dark
                             @elseif($conge->statut == 'approved') alert-success
                             @else alert-danger @endif">
-                            <i class="fas 
+                            <i class="fas
                                 @if($conge->statut == 'pending') fa-clock
                                 @elseif($conge->statut == 'approved') fa-check-circle
                                 @else fa-times-circle @endif me-2"></i>
@@ -136,7 +137,7 @@
     .rounded-3 {
         border-radius: 0.75rem !important;
     }
-    
+
     .border {
         border-color: #e9ecef !important;
     }

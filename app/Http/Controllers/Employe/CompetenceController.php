@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetenceController extends Controller
 {
-    
+
+    // Methode index:
     public function index(){
         $user = Auth::user();
 
@@ -22,6 +23,7 @@ class CompetenceController extends Controller
         return view('employe.competences',compact('mesCompetences','mesNiveaux','competences'));
     }
 
+    // Methode update
     public function update(Request $request){
         $user = Auth::user();
 

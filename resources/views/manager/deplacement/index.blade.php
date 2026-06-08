@@ -1,4 +1,5 @@
 <x-app-layout>
+    {{-- Afficher de deplacements --}}
     <div class="container py-4">
         <div class="card shadow-sm">
             <div class="card-header  text-dark">

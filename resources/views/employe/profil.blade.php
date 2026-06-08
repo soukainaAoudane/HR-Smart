@@ -1,5 +1,6 @@
 {{-- resources/views/employe/profil.blade.php --}}
 <x-app-layout>
+    {{-- Profile --}}
     <div class="container py-4">
         <h1 class="text-center  fw-bold mb-4"style="color: #1e3a5f;">
             Mon Profil

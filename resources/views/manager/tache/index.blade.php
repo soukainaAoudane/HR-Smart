@@ -1,15 +1,17 @@
 <x-app-layout>
+    {{-- Affichages des taches --}}
     <div class="container py-4">
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-header text-white rounded-top-4 d-flex justify-content-between align-items-center" style="background: #1e3a5f; border-bottom: none;">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-tasks fs-4 me-3"></i>
-                    <h4 class="mb-0 fw-bold">Gestion des tâches</h4>
+                    <h4 class="mb-0 fw-bold">Gestion des tâcches</h4>
                 </div>
                 <a href="{{ route('manager.tache.create') }}" class="btn btn-light btn-sm rounded-pill px-3">
                     <i class="fas fa-plus me-1"></i> Nouvelle tâche
                 </a>
             </div>
+
             <div class="card-body p-4">
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show rounded-3" role="alert">

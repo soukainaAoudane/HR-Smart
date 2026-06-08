@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    // Methode index:
     public function index()
     {
         $user    = Auth::user();
@@ -20,6 +21,7 @@ class ProfileController extends Controller
         return view('employe.profil', compact('user', 'manager'));
     }
 
+    // Methode update
     public function update(Request $request)
     {
         $user = Auth::user();

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CongeController extends Controller
 {
+    // Methode index:
     public function index()
     {
         $user = Auth::user();
@@ -23,13 +24,16 @@ class CongeController extends Controller
         return view('employe.conge.index', compact('conges'));
     }
 
+    // Methode create
     public function create()
     {
         $user           = Auth::user();
         $congesRestants = $user->conges_restants;
+
         return view('employe.conge.create', compact('congesRestants'));
     }
 
+    // Methode store
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -71,16 +75,17 @@ class CongeController extends Controller
         return redirect()->route('employe.conge.index')->with('success', 'Demande de congé envoyée');
     }
 
+    // Methode show
     public function show($id)
     {
         $user = Auth::user();
 
-        
-            $conge = Conge::where('id', $id)->where('user_id', $user->id)->firstOrFail();
-        
+        $conge = Conge::where('id', $id)->where('user_id', $user->id)->firstOrFail();
+
         return view('employe.conge.show', compact('conge'));
     }
 
+    // Methode annuler
     public function annuler($id)
     {
         $user = Auth::user();
@@ -93,7 +98,9 @@ class CongeController extends Controller
         if ($conge->statut != 'pending') {
             return back()->with('error', 'Seules les demandes en attente peuvent être annulées');
         }
+
         $conge->delete();
+
         return redirect()->route('employe.conge.index')->with('success', 'Demande annulée');
     }
 }

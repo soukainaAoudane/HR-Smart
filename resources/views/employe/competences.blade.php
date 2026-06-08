@@ -1,5 +1,6 @@
 {{--ressources/views/employe/competences.blade.php--}}
 <x-app-layout>
+    {{-- Affichage descompteetences --}}
     @php
         $groupes=$competences->groupBy('categorie');
     @endphp
@@ -7,11 +8,12 @@
         @csrf
         @method('PUT')
         @foreach ($groupes as $categorie=>$comps )
-            
-           
+
+
             <div class="card mb-3 rounded-4">
                 <div class="card-body"><h1 class="p-1 rounded-4 bg-info">{{$categorie}}</h1>
-                    @foreach ($comps as $competence ) @php
+                    @foreach ($comps as $competence )
+                    @php
                 $niveauActuel=$mesNiveaux[$competence->id]??0;
             @endphp
                     <label  class="fw-bold">{{$competence->nom}}</label>
@@ -23,7 +25,7 @@
                         <option value="4" {{$niveauActuel == 4?'selected':''}}> avance</option>
                         <option value="5" {{$niveauActuel == 5?'selected':''}}> expert</option>
                     </select>
-                
+
         @endforeach</div>
             </div>
         @endforeach

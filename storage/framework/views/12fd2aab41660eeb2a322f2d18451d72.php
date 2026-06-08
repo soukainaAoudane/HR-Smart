@@ -42,6 +42,7 @@
                     </div>
                 </a>
             </div>
+
             <div class="col-md-3 col-6">
                 <a href="mesDeplacements" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -110,8 +111,9 @@
                     <?php echo e($tachesEnCours->count()); ?> tâches en cours
                 </span>
                 <span class="text-decoration-underline text-primary"><a href="<?php echo e(route('employe.tache.index')); ?>">Voir
-                        toutes les tâches</a></span>
+                        toutes les tâc hes</a></span>
             </div>
+
             <div class="card-body">
                 <?php if(isset($taches) && $taches->count() > 0): ?>
                     <?php $__currentLoopData = $taches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tache): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

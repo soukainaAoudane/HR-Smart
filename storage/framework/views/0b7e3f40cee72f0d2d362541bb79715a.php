@@ -33,7 +33,7 @@
                                     <tr>
                                         <td><strong><?php echo e($tache->titre); ?></strong><br>
                                             <small
-                                                class="text-muted"><?php echo e($tache->description ?? 'Pas de description'); ?></small>
+                                                class="text-muted"><?php echo e($tache->description ?? 'Pas de descprotion'); ?></small>
                                         </td>
                                         <td>
                                             <span

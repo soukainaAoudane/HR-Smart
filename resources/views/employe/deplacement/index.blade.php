@@ -1,5 +1,6 @@
 {{-- resources/views/employe/deplacement/index.blade.php --}}
 <x-app-layout>
+    {{-- Afficher tous les deplacements --}}
     <div class="container py-4">
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-header text-white rounded-top-4 d-flex justify-content-between align-items-center" style="background: #1e3a5f; border-bottom: none;">
@@ -49,7 +50,7 @@
                                             <span class="fw-semibold">{{ \Carbon\Carbon::parse($deplacement->date_debut)->format('d/m/Y') }}</span>
                                             <br>
                                             <small class="text-muted">
-                                                <i class="fas fa-arrow-right me-1"></i> 
+                                                <i class="fas fa-arrow-right me-1"></i>
                                                 {{ \Carbon\Carbon::parse($deplacement->date_fin)->format('d/m/Y') }}
                                             </small>
                                         </td>
@@ -86,8 +87,8 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('employe.deplacement.show', $deplacement->id) }}" 
-                                               class="btn btn-sm rounded-pill px-3" 
+                                            <a href="{{ route('employe.deplacement.show', $deplacement->id) }}"
+                                               class="btn btn-sm rounded-pill px-3"
                                                style="background: #1e3a5f; color: white; border: none;">
                                                 <i class="fas fa-eye me-1"></i> Voir
                                             </a>
@@ -106,7 +107,7 @@
                         </div>
                         <h5 class="text-muted">Aucun déplacement demandé</h5>
                         <p class="text-muted">Vous n'avez pas encore fait de demande de déplacement.</p>
-                        <a href="{{ route('employe.deplacement.create') }}" class="btn rounded-pill px-4 mt-2" 
+                        <a href="{{ route('employe.deplacement.create') }}" class="btn rounded-pill px-4 mt-2"
                            style="background: #1e3a5f; color: white; border: none;">
                             <i class="fas fa-plus me-2"></i> Demander un déplacement
                         </a>
@@ -122,47 +123,47 @@
         border-radius: 12px;
         overflow: hidden;
     }
-    
+
     .table thead th {
         font-weight: 600;
         border-bottom: 2px solid #dee2e6;
     }
-    
+
     .table tbody tr {
         transition: all 0.2s ease;
         cursor: pointer;
     }
-    
+
     .table tbody tr:hover {
         background-color: #f8f9fa;
         transform: translateX(5px);
     }
-    
+
     .badge {
         font-weight: 500;
         font-size: 0.75rem;
     }
-    
+
     .btn {
         transition: all 0.2s ease;
     }
-    
+
     .btn:hover {
         transform: translateY(-2px);
         filter: brightness(1.05);
     }
-    
+
     @media (max-width: 768px) {
         .table td, .table th {
             font-size: 0.8rem;
             padding: 10px 8px;
         }
-        
+
         .badge {
             font-size: 0.65rem;
             padding: 4px 8px;
         }
-        
+
         .btn-sm {
             font-size: 0.7rem;
             padding: 0.25rem 0.5rem;
