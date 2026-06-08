@@ -4,7 +4,7 @@
 
             <!-- Colonne gauche - Formulaire -->
             <div class="col-lg-6 d-flex align-items-center justify-content-center p-3 p-md-4"
-                style="background: white; min-height: 100vh;">
+                style="background: #f0ebd8; min-height: 100vh;">
                 <div class="w-100" style="max-width: 400px;">
 
                     <!-- Logo -->
@@ -23,8 +23,8 @@
                         </svg>
                     </div>
 
-                    <h3 class="fw-bold text-center mb-1">Nouveau mot de passe</h3>
-                    <p class="text-muted text-center mb-4 small">Choisissez un mot de passe sécurisé</p>
+                    <h3 class="fw-bold text-center mb-1" style="color: #0d1321;">Nouveau mot de passe</h3>
+                    <p class="text-center mb-4 small" style="color: #748cab;">Choisissez un mot de passe sécurisé</p>
 
                     <form method="POST" action="{{ route('password.store') }}">
                         @csrf
@@ -33,13 +33,14 @@
 
                         <!-- Email -->
                         <div class="mb-3">
-                            <label for="email" class="form-label small fw-semibold mb-1">
+                            <label for="email" class="form-label small fw-semibold mb-1" style="color: #0d1321;">
                                 <i class="bi bi-envelope me-1"></i> Email
                             </label>
                             <input type="email" id="email" name="email"
                                 value="{{ old('email', request()->email) }}"
                                 class="form-control form-control-sm @error('email') is-invalid @enderror"
-                                placeholder="exemple@email.com" required readonly>
+                                placeholder="exemple@email.com" required readonly
+                                style="border-color: #748cab; background-color: #f0ebd8;">
                             @error('email')
                                 <div class="invalid-feedback small">{{ $message }}</div>
                             @enderror
@@ -47,28 +48,30 @@
 
                         <!-- Mot de passe -->
                         <div class="mb-3">
-                            <label for="password" class="form-label small fw-semibold mb-1">
+                            <label for="password" class="form-label small fw-semibold mb-1" style="color: #0d1321;">
                                 <i class="bi bi-lock me-1"></i> Nouveau mot de passe
                             </label>
                             <input type="password" id="password" name="password"
                                 class="form-control form-control-sm @error('password') is-invalid @enderror"
-                                placeholder="8 caractères min" required>
+                                placeholder="8 caractères min" required
+                                style="border-color: #748cab;">
                             @error('password')
                                 <div class="invalid-feedback small">{{ $message }}</div>
                             @enderror
-                            <div class="form-text small mt-1">
+                            <div class="form-text small mt-1" style="color: #748cab;">
                                 <i class="bi bi-info-circle me-1"></i> Minimum 8 caractères
                             </div>
                         </div>
 
                         <!-- Confirmation -->
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label small fw-semibold mb-1">
+                            <label for="password_confirmation" class="form-label small fw-semibold mb-1" style="color: #0d1321;">
                                 <i class="bi bi-check-circle me-1"></i> Confirmer
                             </label>
                             <input type="password" id="password_confirmation" name="password_confirmation"
                                 class="form-control form-control-sm @error('password_confirmation') is-invalid @enderror"
-                                placeholder="Confirmez" required>
+                                placeholder="Confirmez" required
+                                style="border-color: #748cab;">
                             @error('password_confirmation')
                                 <div class="invalid-feedback small">{{ $message }}</div>
                             @enderror
@@ -76,7 +79,7 @@
 
                         <!-- Bouton -->
                         <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-primary btn-sm fw-semibold py-1">
+                            <button type="submit" class="btn btn-sm fw-semibold py-2" style="background-color: #3e5c76; border-color: #3e5c76; color: white;">
                                 <i class="bi bi-arrow-repeat me-1"></i>
                                 Réinitialiser
                             </button>
@@ -84,7 +87,7 @@
 
                         <!-- Lien retour -->
                         <div class="text-center mt-3">
-                            <a href="{{ route('login') }}" class="text-decoration-none small">
+                            <a href="{{ route('login') }}" class="text-decoration-none small" style="color: #3e5c76;">
                                 ← Retour
                             </a>
                         </div>
@@ -92,8 +95,8 @@
                     </form>
 
                     <!-- Message sécurité -->
-                    <div class="text-center mt-3 pt-2 border-top">
-                        <small class="text-muted small">
+                    <div class="text-center mt-3 pt-2 border-top" style="border-color: #748cab;">
+                        <small class="small" style="color: #748cab;">
                             <i class="bi bi-shield-check me-1"></i>
                             Lien valable 60 min
                         </small>
@@ -103,14 +106,13 @@
             </div>
 
             <!-- Colonne droite - Héros -->
-            <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center text-white p-4"
-                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+            <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center p-4"
+                style="background: #1d2d44; min-height: 100vh;">
                 <div class="text-center">
-                    <i class="bi bi-shield-lock fs-1 mb-3 d-block"></i>
-                    <h2 class="fw-bold mb-2">HR-Smart</h2>
-                    <p class="mb-0 small">Gestion RH simplifiée</p>
+                    <i class="bi bi-shield-lock fs-1 mb-3 d-block" style="color: #748cab;"></i>
+                    <h2 class="fw-bold mb-2" style="color: #f0ebd8;">HR-Smart</h2>
+                    <p class="mb-0 small" style="color: #748cab;">Gestion RH simplifiée</p>
                     <div class="mt-4">
-
                     </div>
                 </div>
             </div>

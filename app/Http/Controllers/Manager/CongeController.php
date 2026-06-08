@@ -4,27 +4,29 @@ namespace App\Http\Controllers\Manager;
 use App\Http\Controllers\Controller;
 use App\Models\Conge;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+
 
 class CongeController extends Controller
 {
     public function index()
     {
-        $manager     = Auth::user();
-        dd($manager->id,$manager->name);
-        $employesIds = $manager->employes()->pluck('id');
-        dd($employesIds);
-        if ($employesIds->isEmpty()) {
-    // Méthode 2 : Recherche directe des employés qui ont ce manager_id
-    $employesIds = User::where('manager_id', $manager->id)->pluck('id');
-}
+        $manager = Auth::user();
 
-        $demandes    = Conge::whereIn('user_id', $employesIds)
+        $employes = User::where('manager_id', $manager->id)->get();
+
+        $employesIds = $manager->employes()->pluck('id');
+
+        if ($employesIds->isEmpty()) {
+            $employesIds = User::where('manager_id', $manager->id)->pluck('id');
+        }
+
+        $demandes = Conge::whereIn('user_id', $employesIds)
             ->where('statut', 'pending')
             ->orderBy('created_at', 'desc')
             ->get();
-        dd($demandes);
 
         return view('manager.conge.index', compact('demandes'));
     }
@@ -35,6 +37,7 @@ class CongeController extends Controller
         $employesIds = $manager->employes()->pluck('id');
         $demande     = Conge::whereIn('user_id', $employesIds)
             ->findOrFail($id);
+
         $congesSimultanes = Conge::whereIn('user_id', $employesIds)
             ->where('statut', 'approved')
             ->where(function ($query) use ($demande) {
@@ -47,33 +50,35 @@ class CongeController extends Controller
         $impactPourcentage = ($congesSimultanes / max($totalEquipe, 1)) * 100;
 
         return view('manager.conge.show', compact('demande', 'congesSimultanes', 'totalEquipe', 'impactPourcentage'));
-
     }
+    
 
     public function accepter($id)
     {
         $manager     = Auth::user();
         $employesIds = $manager->employes()->pluck('id');
 
-        $demande = Conge::whereIn('user_id', $employesIds)
-            ->where('statut', 'pending')
-            ->findOrFail($id);
+    $demande = Conge::whereIn('user_id', $employesIds)
+        ->where('statut', 'pending')
+        ->findOrFail($id);
 
-        $demande->update([
-            'statut'          => 'approved',
-            'valide_par'      => $manager->id,
-            'date_validation' => now(),
-        ]);
+    $duree = $demande->duree;
 
+    if ($demande->isPaye()) {
         $employe = $demande->user;
-        $duree   = $demande->date_debut->diffInDays($demande->date_fin) + 1;
         $employe->decrement('conges_restants', $duree);
-
-        // Mail::to($employe->email)->send(new CongeAccepter($demande));
-        return redirect()->route('manager.conges.index')
-            ->with('success', 'Congé accepteé' . $duree . 'jours on été supprimé de vots conges restants');
-
     }
+
+    $demande->update([
+        'statut'          => 'approved',
+        'valide_par'      => $manager->id,
+        'date_validation' => now(),
+    ]);
+
+    return redirect()->route('manager.conges.index')
+        ->with('success', 'Congé accepté. ' . $duree . ' jour déduits du solde de ' . $demande->user->name);
+}
+
     public function refuser(Request $request, $id)
     {
         $request->validate([
@@ -87,7 +92,6 @@ class CongeController extends Controller
             ->where('statut', 'pending')
             ->findOrFail($id);
 
-        // Mettre à jour la demande
         $demande->update([
             'statut'              => 'refused',
             'valide_par'          => $manager->id,
@@ -95,8 +99,7 @@ class CongeController extends Controller
             'date_validation'     => now(),
         ]);
 
-
         return redirect()->route('manager.conges.index')
-            ->with('error', 'Congé refusé. Motif enregistré.');
+            ->with('success', 'Congé refusé. Motif enregistré.');
     }
 }

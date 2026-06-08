@@ -1,107 +1,125 @@
 {{-- resources/views/employe/conge/show.blade.php --}}
-@extends('layouts.dashboard')
-
-@section('title', 'Détail du congé')
-
-@section('content')
-    <div class="container">
+<x-app-layout>
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="fas fa-info-circle"></i> Détail de ma demande</h4>
+                <div class="card shadow-sm border-0 rounded-4">
+                    <div class="card-header text-white rounded-top-4" style="background: #1e3a5f; border-bottom: none;">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-info-circle fs-4 me-3"></i>
+                            <h4 class="mb-0 fw-bold">Détail de ma demande de congé</h4>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-4">
 
-                        <div class="row mb-3">
-                            <div class="col-md-4 fw-bold">Statut :</div>
-                            <div class="col-md-8">
-                                @if ($conge->statut == 'pending')
-                                    <span class="badge bg-warning text-dark">⏳ En attente de validation</span>
-                                @elseif($conge->statut == 'approved')
-                                    <span class="badge bg-success">✅ Accepté</span>
-                                @else
-                                    <span class="badge bg-danger">❌ Refusé</span>
-                                @endif
-                            </div>
+                        {{-- Statut en évidence --}}
+                        <div class="alert mb-4 rounded-3 text-center fw-bold fs-5 
+                            @if($conge->statut == 'pending') alert-warning text-dark
+                            @elseif($conge->statut == 'approved') alert-success
+                            @else alert-danger @endif">
+                            <i class="fas 
+                                @if($conge->statut == 'pending') fa-clock
+                                @elseif($conge->statut == 'approved') fa-check-circle
+                                @else fa-times-circle @endif me-2"></i>
+                            @if($conge->statut == 'pending')
+                                En attente de validation
+                            @elseif($conge->statut == 'approved')
+                                Demande approuvée
+                            @else
+                                Demande refusée
+                            @endif
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-4 fw-bold">Type :</div>
-                            <div class="col-md-8">
-                                @switch($conge->type)
-                                    @case('vacances')
-                                        🏖️ Vacances
-                                    @break
-
-                                    @case('maladie')
-                                        🤒 Maladie
-                                    @break
-
-                                    @case('personnel')
-                                        👤 Personnel
-                                    @break
-
-                                    @case('formation')
-                                        📚 Formation
-                                    @break
-
-                                    @default
-                                        {{ $conge->type }}
-                                @endswitch
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-4 fw-bold">Période :</div>
-                            <div class="col-md-8">
-                                Du {{ \Carbon\Carbon::parse($conge->date_debut)->format('d/m/Y') }}<br>
-                                Au {{ \Carbon\Carbon::parse($conge->date_fin)->format('d/m/Y') }}
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-4 fw-bold">Durée :</div>
-                            <div class="col-md-8">{{ $conge->duree }} jours</div>
-                        </div>
-
-                        @if ($conge->motif)
-                            <div class="row mb-3">
-                                <div class="col-md-4 fw-bold">Motif :</div>
-                                <div class="col-md-8">{{ $conge->motif }}</div>
-                            </div>
-                        @endif
-
-                        <div class="row mb-3">
-                            <div class="col-md-4 fw-bold">Date de demande :</div>
-                            <div class="col-md-8">{{ $conge->created_at->format('d/m/Y à H:i') }}</div>
-                        </div>
-
-                        @if ($conge->commentaire_manager)
-                            <div class="row mb-3">
-                                <div class="col-md-4 fw-bold">Commentaire manager :</div>
-                                <div class="col-md-8">
-                                    <div class="alert alert-info mb-0">
-                                        <i class="fas fa-comment"></i> {{ $conge->commentaire_manager }}
-                                    </div>
+                        <div class="row g-3">
+                            {{-- Type de congé --}}
+                            <div class="col-md-6">
+                                <div class="p-3 rounded-3" style="background: #e8f0fe;">
+                                    <small class="text-muted text-uppercase d-block mb-1">Type de congé</small>
+                                    <span class="fw-bold fs-5">
+                                        @if($conge->type == 'paye')
+                                            <i class="fas fa-umbrella-beach me-2" style="color: #1e3a5f;"></i> Congé payé
+                                        @elseif($conge->type == 'rtt')
+                                            <i class="fas fa-bolt me-2" style="color: #198754;"></i> RTT
+                                        @elseif($conge->type == 'sans_solde')
+                                            <i class="fas fa-coins me-2" style="color: #fd7e14;"></i> Congé sans solde
+                                        @elseif($conge->type == 'formation')
+                                            <i class="fas fa-graduation-cap me-2" style="color: #0dcaf0;"></i> Congé formation
+                                        @endif
+                                    </span>
                                 </div>
                             </div>
-                        @endif
 
-                        <hr>
+                            {{-- Durée --}}
+                            <div class="col-md-6">
+                                <div class="p-3 rounded-3" style="background: #e8f0fe;">
+                                    <small class="text-muted text-uppercase d-block mb-1">Durée</small>
+                                    <span class="fw-bold fs-5">
+                                        <i class="fas fa-hourglass-half me-2" style="color: #1e3a5f;"></i>
+                                        {{ $conge->duree }} jour(s)
+                                    </span>
+                                </div>
+                            </div>
 
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('employe.conge.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Retour à la liste
+                            {{-- Date début --}}
+                            <div class="col-md-6">
+                                <div class="p-3 rounded-3 border">
+                                    <small class="text-muted text-uppercase d-block mb-1">
+                                        <i class="fas fa-calendar-day me-1"></i> Date début
+                                    </small>
+                                    <span class="fw-bold">{{ \Carbon\Carbon::parse($conge->date_debut)->format('l d F Y') }}</span>
+                                    <br>
+                                    <small class="text-muted">{{ \Carbon\Carbon::parse($conge->date_debut)->format('d/m/Y') }}</small>
+                                </div>
+                            </div>
+
+                            {{-- Date fin --}}
+                            <div class="col-md-6">
+                                <div class="p-3 rounded-3 border">
+                                    <small class="text-muted text-uppercase d-block mb-1">
+                                        <i class="fas fa-calendar-check me-1"></i> Date fin
+                                    </small>
+                                    <span class="fw-bold">{{ \Carbon\Carbon::parse($conge->date_fin)->format('l d F Y') }}</span>
+                                    <br>
+                                    <small class="text-muted">{{ \Carbon\Carbon::parse($conge->date_fin)->format('d/m/Y') }}</small>
+                                </div>
+                            </div>
+
+                            {{-- Motif --}}
+                            @if($conge->motif)
+                            <div class="col-12">
+                                <div class="p-3 rounded-3" style="background: #f8f9fa;">
+                                    <small class="text-muted text-uppercase d-block mb-1">
+                                        <i class="fas fa-edit me-1"></i> Motif
+                                    </small>
+                                    <p class="mb-0">{{ $conge->motif }}</p>
+                                </div>
+                            </div>
+                            @endif
+
+                            {{-- Commentaire manager (si refusé) --}}
+                            @if($conge->commentaire_manager)
+                            <div class="col-12">
+                                <div class="p-3 rounded-3" style="background: #fff3cd; border-left: 4px solid #ffc107;">
+                                    <small class="text-warning text-uppercase d-block mb-1">
+                                        <i class="fas fa-comment-dots me-1"></i> Commentaire du manager
+                                    </small>
+                                    <p class="mb-0">{{ $conge->commentaire_manager }}</p>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                            <a href="{{ route('employe.conge.index') }}" class="btn btn-outline-secondary rounded-pill px-4">
+                                <i class="fas fa-arrow-left me-2"></i> Retour
                             </a>
-
-                            @if ($conge->statut == 'pending')
-                                <form method="POST" action="{{ route('employe.conge.annuler', $conge->id) }}"
-                                    onsubmit="return confirm('Annuler cette demande ?')">
+                            @if($conge->statut == 'pending')
+                                <form action="{{ route('employe.conge.annuler', $conge->id) }}" method="POST"
+                                      onsubmit="return confirm('Êtes-vous sûr de vouloir annuler cette demande ?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fas fa-trash"></i> Annuler la demande
+                                    <button type="submit" class="btn btn-danger rounded-pill px-4">
+                                        <i class="fas fa-trash-alt me-2"></i> Annuler la demande
                                     </button>
                                 </form>
                             @endif
@@ -112,4 +130,14 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>
+
+<style>
+    .rounded-3 {
+        border-radius: 0.75rem !important;
+    }
+    
+    .border {
+        border-color: #e9ecef !important;
+    }
+</style>

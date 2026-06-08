@@ -1,228 +1,158 @@
-<?php $__env->startSection('title', 'Mon profil'); ?>
 
-<?php $__env->startSection('content'); ?>
+<?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
+<?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
     <div class="container py-4">
+        <h1 class="text-center  fw-bold mb-4"style="color: #1e3a5f;">
+            Mon Profil
+        </h1>
+        <?php if(session('success')): ?>
+            <div class="alert alert-success">
+                <?php echo e(session('success')); ?>
 
-
-        <?php if($errors->any()): ?>
-            <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                <i class="fas fa-exclamation-triangle me-2"></i>
-                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php echo e($error); ?><br>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         <?php endif; ?>
-
-        <div class="row g-4">
-
-            
-            <div class="col-lg-6">
-
-                
-                <div class="card shadow-sm border-0 rounded-4 mb-4">
-                    <div class="card-header bg-white border-0 pt-4 pb-0">
-                        <h5 class="mb-0 fw-bold">
-                            <i class="fas fa-user-circle text-primary me-2"></i>
-                            Informations personnelles
-                        </h5>
-                    </div>
-                    <div class="card-body p-4">
-                        <form action="<?php echo e(route('employe.profil.update')); ?>" method="POST">
-                            <?php echo csrf_field(); ?>
-                            <?php echo method_field('PUT'); ?>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Nom complet</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0">
-                                        <i class="fas fa-user text-muted"></i>
-                                    </span>
-                                    <input type="text" name="name"
-                                        class="form-control border-start-0 <?php $__errorArgs = ['name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                        value="<?php echo e(old('name', $user->name)); ?>" required>
-                                </div>
-                                <?php $__errorArgs = ['name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <div class="text-danger small mt-1"><?php echo e($message); ?></div>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Adresse email</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0">
-                                        <i class="fas fa-envelope text-muted"></i>
-                                    </span>
-                                    <input type="email" name="email"
-                                        class="form-control border-start-0 <?php $__errorArgs = ['email'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                        value="<?php echo e(old('email', $user->email)); ?>" required>
-                                </div>
-                                <?php $__errorArgs = ['email'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <div class="text-danger small mt-1"><?php echo e($message); ?></div>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Poste</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0">
-                                        <i class="fas fa-briefcase text-muted"></i>
-                                    </span>
-                                    <input disabled type="text" name="poste" class="form-control border-start-0"
-                                        value="<?php echo e(old('poste', $user->poste)); ?>">
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary rounded-pill py-2 fw-semibold">
-                                    <i class="fas fa-save me-2"></i> Mettre à jour
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <?php if($errors->any()): ?>
+            <div class="alert alert-danger">
+                <?php echo e(session('error')); ?>
 
             </div>
-
+        <?php endif; ?>
+        <div class="row g-4">
             
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-12">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
 
-                
-                <div class="card shadow-sm border-0 rounded-4 mb-4">
-                    <div class="card-header bg-white border-0 pt-4 pb-0">
-                        <h5 class="mb-0 fw-bold">
-                            <i class="fas fa-chart-pie text-success me-2"></i>
-                            Récapitulatif
-                        </h5>
+                    <div class="card-header bg-white border-0 text-center pt-4">
+                        <h4 class="mt-3 fw-bold">
+                            <?php echo e($user->name); ?>
+
+                        </h4>
+                        <span class="badge bg-primary">
+                            <?php echo e(ucfirst($user->role)); ?>
+
+                        </span>
                     </div>
-                    <div class="card-body p-4">
+                    <div class="card-body">
+                        <div class="border rounded-4 p-4 bg-light">
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">
+                                    Nom
+                                </div>
+                                <div class="col-8">
+                                    <?php echo e($user->name); ?>
 
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="bg-light rounded-3 p-3 text-center">
-                                    <i class="fas fa-calendar-alt fa-2x text-primary mb-2"></i>
-                                    <p class="text-muted small mb-0">Solde de congés</p>
-                                    <h3 class="mb-0 fw-bold"><?php echo e($user->conges_restants ?? 0); ?></h3>
-                                    <small>jours restants</small>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="bg-light rounded-3 p-3 text-center">
-                                    <i class="fas fa-clock fa-2x text-warning mb-2"></i>
-                                    <p class="text-muted small mb-0">En attente</p>
-                                    <h3 class="mb-0 fw-bold"><?php echo e($user->congesEnAttente()->count() ?? 0); ?></h3>
-                                    <small>demandes</small>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">
+                                    Email
+                                </div>
+                                <div class="col-8">
+                                    <?php echo e($user->email); ?>
+
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="bg-light rounded-3 p-3 text-center">
-                                    <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
-                                    <p class="text-muted small mb-0">Approuvés</p>
-                                    <h3 class="mb-0 fw-bold"><?php echo e($user->congesApprouves()->count() ?? 0); ?></h3>
-                                    <small>congés validés</small>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">
+                                    Roole
+                                </div>
+                                <div class="col-8">
+                                    <?php echo e(ucfirst($user->role)); ?>
+
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="bg-light rounded-3 p-3 text-center">
-                                    <i class="fas fa-chart-line fa-2x text-info mb-2"></i>
-                                    <p class="text-muted small mb-0">Charge</p>
-                                    <h3 class="mb-0 fw-bold"><?php echo e($user->charge_actuelle ?? 0); ?>%</h3>
-                                    <small>travail</small>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">
+                                    Manager
+                                </div>
+                                <div class="col-8">
+                                    <?php echo e($manager?->name ?? 'Aucun manager'); ?>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 fw-bold">
+                                    Poste
+                                </div>
+                                <div class="col-8">
+                                    <?php echo e($user->poste); ?>
+
                                 </div>
                             </div>
                         </div>
-
-                        <?php if($user->isManager()): ?>
-                            <hr class="my-4">
-                            <div class="bg-primary bg-opacity-10 rounded-3 p-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <i class="fas fa-users fa-2x text-primary mb-2"></i>
-                                        <p class="mb-0 fw-semibold">Équipe</p>
-                                        <h4 class="mb-0"><?php echo e($user->employes()->count() ?? 0); ?> employés</h4>
-                                    </div>
-                                    <a href="<?php echo e(route('manager.conges.index')); ?>"
-                                        class="btn btn-sm btn-primary rounded-pill">
-                                        <i class="fas fa-calendar-check me-1"></i> Valider les congés
-                                    </a>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-
-                    </div>
-                </div>
-
-                
-                <div class="card shadow-sm border-0 rounded-4">
-                    <div class="card-header bg-white border-0 pt-4 pb-0">
-                        <h5 class="mb-0 fw-bold">
-                            <i class="fas fa-info-circle text-secondary me-2"></i>
-                            Informations complémentaires
-                        </h5>
-                    </div>
-                    <div class="card-body p-4">
-                        <table class="table table-borderless">
-                            <tr>
-                                <td class="ps-0 text-muted" style="width: 120px;">Rôle :</td>
-                                <td class="fw-semibold">
-                                    <span class="badge bg-primary rounded-pill"><?php echo e(ucfirst($user->role)); ?></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="ps-0 text-muted">Manager :</td>
-                                <td class="fw-semibold">
-                                    <?php if($manager): ?>
-                                        <?php echo e($manager->name?? 'Non assigné'); ?>
-
-                                    <?php else: ?>
-                                        <span class="text-muted">Aucun manager</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="ps-0 text-muted">Date d'inscription :</td>
-                                <td class="fw-semibold"><?php echo e($user->created_at->format('d/m/Y')); ?></td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
-
+            
+            <div class="col-lg-6 col-12">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-header bg-white border-0 pt-4">
+                        <h5 class="fw-bold  mb-0" style="color: #1e3a5f;">
+                            Modifier mon profil
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="<?php echo e(route('employe.profil.update')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-semibold">
+                                    Nom
+                                </label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                    value="<?php echo e(old('name', $user->name)); ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-semibold">
+                                    Email
+                                </label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                    value="<?php echo e(old('email', $user->email)); ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label fw-semibold">
+                                    Mot de passe actuel
+                                </label>
+                                <input type="password" name="current_password" id="current_password"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label fw-semibold">
+                                    Nouveau mot de passe
+                                </label>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">
+                                    Poste
+                                </label>
+                                <input type="text" class="form-control" value="<?php echo e($user->poste); ?>" disabled>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                Enregistrer les modifications
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.dashboard', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\gestionstagiaires\resources\views/employe/profil.blade.php ENDPATH**/ ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $attributes = $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php /**PATH C:\gestionstagiaires\resources\views/employe/profil.blade.php ENDPATH**/ ?>

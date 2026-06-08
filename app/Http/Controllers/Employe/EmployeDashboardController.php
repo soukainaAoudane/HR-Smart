@@ -5,24 +5,29 @@ use App\Http\Controllers\Controller;
 use App\Models\Tache;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\PerformanceService;
+
 
 class EmployeDashboardController extends Controller
 {
-    public function index()
+    public function index(PerformanceService $performanceService)
     {
         $employe = Auth::user();
-
-        $nom     = $employe->name;
-        $email   = $employe->email;
-        $poste   = $employe->poste;
         $manager = User::find($employe->manager_id);
 
-        $congesRestants = $employe->conges_restants;
+        $congesRestants     = $employe->conges_restants;
+        $cinqDerniersConges = $employe->conges()->orderBy('created_at', 'desc')->take(5)->get();
+        $taches             = Tache::where('assignee_a', $employe->id)->where('statut', '!=', 'done')->get();
 
-        $charge_actuelle = $employe->charge_actuelle;
-
-        $taches        = Tache::where('assignee_a', $employe->id)->where('statut', '!=', 'done')->get();
         $tachesEnCours = Tache::where('assignee_a', $employe->id)->where('statut', 'doing')->get();
-        return view('employe.dashboard', compact('employe', 'nom', 'email', 'poste', 'manager', 'congesRestants', 'charge_actuelle', 'taches', 'tachesEnCours'));
+
+        $mesCompetences = $employe->competences;
+
+        $mesDeplacements = $employe->deplacements()->orderBy('created_at', 'desc')->get();
+
+        $performanceActuelle = $performanceService->getPerformanceActuelle($employe);
+        $evolution = $performanceService->getEvolution($employe, 6);
+
+        return view('employe.dashboard', compact('employe', 'manager', 'congesRestants', 'taches', 'tachesEnCours', 'mesCompetences', 'mesDeplacements', 'cinqDerniersConges', 'performanceActuelle', 'evolution'));
     }
 }

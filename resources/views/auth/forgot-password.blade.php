@@ -4,7 +4,7 @@
 
             <!-- Colonne gauche - Formulaire -->
             <div class="col-lg-6 d-flex align-items-center justify-content-center p-3 p-md-4"
-                style="background: white; min-height: 100vh;">
+                style="background: #f0ebd8; min-height: 100vh;">
                 <div class="w-100" style="max-width: 400px;">
 
                     <!-- Logo -->
@@ -23,8 +23,8 @@
                         </svg>
                     </div>
 
-                    <h3 class="fw-bold text-center mb-2">Mot de passe oublié ?</h3>
-                    <p class="text-muted text-center small mb-4">
+                    <h3 class="fw-bold text-center mb-2" style="color: #0d1321;">Mot de passe oublié ?</h3>
+                    <p class="text-center small mb-4" style="color: #748cab;">
                         Entrez votre adresse email et nous vous enverrons un lien de réinitialisation.
                     </p>
 
@@ -41,12 +41,13 @@
 
                         <!-- Email -->
                         <div class="mb-4">
-                            <label for="email" class="form-label small fw-semibold mb-1">
+                            <label for="email" class="form-label small fw-semibold mb-1" style="color: #0d1321;">
                                 <i class="bi bi-envelope me-1"></i> Adresse email
                             </label>
                             <input type="email" id="email" name="email" value="{{ old('email') }}" required
                                 autofocus class="form-control form-control-sm @error('email') is-invalid @enderror"
-                                placeholder="exemple@email.com">
+                                placeholder="exemple@email.com"
+                                style="border-color: #748cab;">
                             @error('email')
                                 <div class="invalid-feedback small">{{ $message }}</div>
                             @enderror
@@ -54,7 +55,7 @@
 
                         <!-- Bouton -->
                         <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn btn-primary btn-sm fw-semibold py-2">
+                            <button type="submit" class="btn btn-sm fw-semibold py-2" style="background-color: #3e5c76; border-color: #3e5c76; color: white;">
                                 <i class="bi bi-envelope-paper me-1"></i>
                                 Envoyer le lien de réinitialisation
                             </button>
@@ -62,7 +63,7 @@
 
                         <!-- Lien retour -->
                         <div class="text-center mt-4">
-                            <a href="{{ route('login') }}" class="text-decoration-none small">
+                            <a href="{{ route('login') }}" class="text-decoration-none small" style="color: #3e5c76;">
                                 <i class="bi bi-arrow-left me-1"></i> Retour à la connexion
                             </a>
                         </div>
@@ -70,8 +71,8 @@
                     </form>
 
                     <!-- Message sécurité -->
-                    <div class="text-center mt-4 pt-2 border-top">
-                        <small class="text-muted small">
+                    <div class="text-center mt-4 pt-2 border-top" style="border-color: #748cab;">
+                        <small class="small" style="color: #748cab;">
                             <i class="bi bi-shield-check me-1"></i>
                             Lien valable 60 minutes
                         </small>
@@ -81,34 +82,33 @@
             </div>
 
             <!-- Colonne droite - Héros -->
-            <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center text-white p-4"
-                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+            <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center p-4"
+                style="background: #1d2d44; min-height: 100vh;">
                 <div class="text-center">
-                    <i class="bi bi-key fs-1 mb-3 d-block"></i>
-                    <h2 class="fw-bold mb-2 display-5">HR-Smart</h2>
-                    <p class="mb-3">Récupérez l'accès à votre compte</p>
+                    <i class="bi bi-key fs-1 mb-3 d-block" style="color: #748cab;"></i>
+                    <h2 class="fw-bold mb-2 display-5" style="color: #f0ebd8;">HR-Smart</h2>
+                    <p class="mb-3" style="color: #748cab;">Récupérez l'accès à votre compte</p>
                     <div class="mt-4">
                         <div class="d-flex justify-content-center gap-4">
                             <div>
-                                <i class="bi bi-shield-lock fs-4"></i>
-                                <p class="small mt-1 mb-0">Sécurisé</p>
+                                <i class="bi bi-shield-lock fs-4" style="color: #748cab;"></i>
+                                <p class="small mt-1 mb-0" style="color: #748cab;">Sécurisé</p>
                             </div>
                             <div>
-                                <i class="bi bi-clock-history fs-4"></i>
-                                <p class="small mt-1 mb-0">Rapide</p>
+                                <i class="bi bi-clock-history fs-4" style="color: #748cab;"></i>
+                                <p class="small mt-1 mb-0" style="color: #748cab;">Rapide</p>
                             </div>
                             <div>
-                                <i class="bi bi-envelope-check fs-4"></i>
-                                <p class="small mt-1 mb-0">Fiable</p>
+                                <i class="bi bi-envelope-check fs-4" style="color: #748cab;"></i>
+                                <p class="small mt-1 mb-0" style="color: #748cab;">Fiable</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Features -->
                     <div class="mt-5 pt-3">
-                        <hr class="bg-white-50">
+                        <hr class="my-4" style="border-color: #748cab;">
                         <div class="mt-3">
-                            <small class="opacity-75">
+                            <small style="color: #748cab;">
                                 <i class="bi bi-check-circle-fill me-1"></i>
                                 Un lien vous sera envoyé par email
                             </small>

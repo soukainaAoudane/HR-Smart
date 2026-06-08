@@ -1,6 +1,7 @@
 <?php
 namespace App\Http;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -49,4 +50,8 @@ class Kernel extends HttpKernel
         'auth'     => \App\Http\Middleware\Authenticate::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    protected function schedule(Schedule $schedule){
+        $schedule->command('performances:calculer')->dailyAt('00:00');
+    }
 }

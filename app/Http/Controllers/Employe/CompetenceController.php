@@ -9,62 +9,45 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetenceController extends Controller
 {
-    /**
-     * Afficher le formulaire d'auto-évaluation
-     */
-    public function index()
-    {
+    
+    public function index(){
         $user = Auth::user();
 
-        // Récupérer toutes les compétences
         $competences = Competence::orderBy('categorie')->orderBy('nom')->get();
 
-        // Récupérer les niveaux actuels de l'utilisateur
-        $mesCompetences = [];
-        foreach ($user->competences as $comp) {
-            $mesCompetences[$comp->id] = $comp->pivot->niveau;
-        }
+        $mesNiveaux = $user->competences->pluck('pivot.niveau','id');
 
-        return view('employe.competences', compact('competences', 'mesCompetences'));
+        $mesCompetences = $user->competences;
+
+        return view('employe.competences',compact('mesCompetences','mesNiveaux','competences'));
     }
 
-    /**
-     * Enregistrer l'auto-évaluation
-     */
-    public function update(Request $request)
-    {
+    public function update(Request $request){
         $user = Auth::user();
 
         $request->validate([
-            'competences'   => 'array',
-            'competences.*' => 'integer|between:1,5',
+            'competences'=>'array',
+            'competences.*'=>'integer|between:1,5',
         ]);
 
-        // Supprimer les anciennes évaluations non validées
-        UserCompetence::where('user_id', $user->id)
-            ->where('validee', false)
-            ->delete();
+        UserCompetence::where('user_id',$user->id)->where('validee',false)->delete();
 
-        // Enregistrer les nouvelles évaluations
-        if ($request->has('competences')) {
-            foreach ($request->competences as $competenceId => $niveau) {
-                if ($niveau >= 1 && $niveau <= 5) {
-                    UserCompetence::updateOrCreate(
-                        [
-                            'user_id'       => $user->id,
-                            'competence_id' => $competenceId,
-                        ],
-                        [
-                            'niveau'        => $niveau,
-                            'validee'       => false,
-                            'auto_detectee' => false,
-                        ]
-                    );
-                }
+        foreach($request->competences as $competenceId=>$niveau){
+            if($niveau<6 && $niveau>0){
+                UserCompetence::updateOrCreate([
+                    'user_id'=>$user->id,
+                    'competence_id'=>$competenceId,
+                ],
+                [
+                    'niveau'=>$niveau,
+                    'validee'=>false,
+                    'auto_detectee'=>false,
+                ]
+                );
             }
         }
 
-        return redirect()->route('employe.competences')
-            ->with('success', 'Auto-évaluation enregistrée. En attente de validation par votre manager.');
+        return redirect()->route('employe.competences')->with("success","la modification a ete savée dnas l'attente de la validation de votre manageer");
     }
+
 }

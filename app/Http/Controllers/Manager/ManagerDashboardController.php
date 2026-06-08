@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Employe;
+namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tache;
@@ -10,6 +10,7 @@ class ManagerDashboardController extends Controller
 
     public function index(){
         $manager = Auth::user();
-        return view('manager.dashboard','manager');
+        $employes = $manager->employes;
+        return view('manager.dashboard',compact('manager', 'employes'));
     }
 }

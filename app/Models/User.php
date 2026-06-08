@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role',
         'poste',
         'manager_id',
+        'conges_restants',
     ];
 
     /**
@@ -92,7 +93,7 @@ class User extends Authenticatable
         return $this->competences()->wherePivot('validee', false);
     }
 
-    public function sendPasswordResetNotification($token):void
+    public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
     }
@@ -102,11 +103,46 @@ class User extends Authenticatable
         return $this->hasMany(Conge::class);
     }
 
-    public function congesEnAttente(){
+    public function congesEnAttente()
+    {
         return $this->conges()->where('statut', 'pending');
     }
 
-    public function congesApprouves(){
+    public function congesApprouves()
+    {
         return $this->conges()->where('statut', 'approved');
+    }
+
+    public function deplacements()
+    {
+        return $this->hasMany(Deplacement::class);
+    }
+
+    public function taches()
+    {
+        return $this->hasMany(Tache::class, 'assignee_a');
+
+    }
+
+    public function tachesCrees()
+    {
+        return $this->hasMany(Tache::class, 'cree_par');
+    }
+
+    public function performances()
+    {
+        return $this->hasMany(Performance::class);
+    }
+
+    public function projetsDiriges()
+    {
+        return $this->hasMany(Projet::class, 'chef_projet_id');
+    }
+
+    public function projets()
+    {
+        return $this->belongsToMany(Projet::class, 'employe_projet', 'employe_id', 'projet_id')
+            ->withPivot('role_dans_projet', 'heures_prevues', 'heures_reelles')
+            ->withTimestamps();
     }
 }

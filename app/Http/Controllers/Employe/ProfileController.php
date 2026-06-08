@@ -11,10 +11,11 @@ class ProfileController extends Controller
     public function index()
     {
         $user    = Auth::user();
-        $manager=null;
+        $manager = null;
+
         if ($user->manager_id && $user->manager_id != $user->id) {
-    $manager = User::find($user->manager_id);
-}
+            $manager = User::find($user->manager_id);
+        }
 
         return view('employe.profil', compact('user', 'manager'));
     }
@@ -28,6 +29,17 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'poste' => 'nullable|string|max:255',
         ]);
+
+        if (empty($request->current_password)) {
+            return redirect()->back()->with('error', 'veuiller entrer le mot depasse actuelle');
+        }
+        if (empty($request->new_password)) {
+            return redirect()->back()->with('error', 'veuiller entrer le nouveau mot depasse');
+        }
+
+        if (! password_verify($request->current_password, $user->password)) {
+            return redirect()->back()->with('error', 'Mot de passe actuel incorrect');
+        }
 
         $user->update($data);
 

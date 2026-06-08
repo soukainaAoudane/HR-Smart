@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('manager_id')->nullable()->constrained('users')->onDelete('set null');
             $table->integer('conges_annules')->default(25);
             $table->integer('conges_restants')->default(25);
+            
             $table->decimal('charge_actuelle', 5, 2)->default(0);
             $table->rememberToken();
 

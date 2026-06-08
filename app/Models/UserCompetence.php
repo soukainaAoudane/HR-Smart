@@ -37,7 +37,7 @@ class UserCompetence extends Model
         return $this->belongsTo(Competence::class);
     }
 
-    // Relation avec le validateur (manager)
+    // Relation avec le validateur 
     public function validateur()
     {
         return $this->belongsTo(User::class, 'validee_par');
