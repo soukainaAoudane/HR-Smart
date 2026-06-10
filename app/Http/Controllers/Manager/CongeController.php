@@ -71,18 +71,15 @@ class CongeController extends Controller
             return redirect()->back()->with('error', 'Demande introuvable.');
         }
 
-        // Calculer la durée
         $debut = Carbon::parse($demande->date_debut);
         $fin   = Carbon::parse($demande->date_fin);
         $duree = $debut->diffInDays($fin) + 1;
 
-        // Déduire les congés restants
         if ($demande->type == 'paye') {
             $employe = $demande->user;
             $employe->decrement('conges_restants', $duree);
         }
 
-        // Mettre à jour la demande
         $demande->update([
             'statut'          => 'approved',
             'valide_par'      => $manager->id,
@@ -128,7 +125,6 @@ class CongeController extends Controller
 
         $conge = Conge::whereIn('user_id', $employesIds)->findOrFail($id);
 
-        // Calculer les propositions
         $matchingService = app(MatchingService::class);
         $propositions    = $matchingService->trouverRemplacants($conge);
 

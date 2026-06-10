@@ -26,10 +26,11 @@
 
         <div class="row mb-4">
             <div class="col-12">
-                <h4 class="mb-3 text-dark">Vue d'ensemble</h4>
+                <h4 class="mb-3 text-dark">Actions rapides</h4>
             </div>
 
             <div class="col-md-4 col-6 mb-3">
+                <a href="#equipe">
                 <div class="card rounded-4 text-center shadow-sm stat-card border-0" style="background: white;">
                     <div class="card-body py-3">
                         <div class="rounded-circle d-inline-block p-3 mb-2" style="background: rgba(30, 58, 95, 0.1);">
@@ -39,21 +40,27 @@
                         <p class="mb-0 fw-bold" style="color: #1e3a5f;"><?php echo e($employes->count() ?? 0); ?></p>
                     </div>
                 </div>
+                </a>
             </div>
 
+
             <div class="col-md-4 col-6 mb-3">
-                <div class="card rounded-4 text-center shadow-sm stat-card border-0" style="background: white">
-                    <div class="card-body py-3">
-                        <div class="rounded-circle d-inline-block p-3 mb-2" style="background: rgba(255, 193, 7, 0.1);">
-                            <i class="fas fa-clock fs-4 text-warning"></i>
+                <a href="#demandes">
+                    <div class="card rounded-4 text-center shadow-sm stat-card border-0" style="background: white">
+                        <div class="card-body py-3">
+                            <div class="rounded-circle d-inline-block p-3 mb-2"
+                                style="background: rgba(255, 193, 7, 0.1);">
+                                <i class="fas fa-clock fs-4 text-warning"></i>
+                            </div>
+                            <p class="mb-0 small fw-bold text-dark">Demandes en attente</p>
+                            <p class="mb-0 fw-bold text-warning"><?php echo e($demandesEnAttente ?? 0); ?></p>
                         </div>
-                        <p class="mb-0 small fw-bold text-dark">Demandes en attente</p>
-                        <p class="mb-0 fw-bold text-warning"><?php echo e($demandesEnAttente ?? 0); ?></p>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-md-4 col-6 mb-3">
+                <a href=""></a>
                 <div class="card rounded-4 text-center shadow-sm stat-card border-0" style="background: white">
                     <div class="card-body py-3">
                         <div class="rounded-circle d-inline-block p-3 mb-2" style="background: rgba(25, 135, 84, 0.1);">
@@ -67,7 +74,7 @@
         </div>
 
         <!-- Mon équipe -->
-        <div class="card mb-4 mt-4 rounded-4 shadow-sm border-0" style="background: white">
+        <div class="card mb-4 mt-4 rounded-4 shadow-sm border-0" style="background: white" id="equipe">
             <div class="card-header bg-white rounded-top-4 border-0 pt-4">
                 <h5 class="mb-0 fw-bold" style="color: #1e3a5f;"><i class="fas fa-users me-2"></i> Mon équipe</h5>
             </div>
@@ -108,10 +115,15 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="badge" style="background: #1e3a5f;"><?php echo e($employe->conges_restants); ?> jours</span>
+                                            <span class="badge"
+                                                style="background: #1e3a5f;"><?php echo e($employe->conges_restants); ?>
+
+                                                jours</span>
                                         </td>
                                         <td>
-                                            <a href="<?php echo e(route('manager.conges.index')); ?>" class="btn btn-sm btn-outline-primary" style="border-color: #1e3a5f; color: #1e3a5f;">
+                                            <a href="<?php echo e(route('manager.conges.index')); ?>"
+                                                class="btn btn-sm btn-outline-primary"
+                                                style="border-color: #1e3a5f; color: #1e3a5f;">
                                                 <i class="fas fa-eye"></i> Voir demandes
                                             </a>
                                         </td>
@@ -131,8 +143,10 @@
 
         <!-- Demandes en attente -->
         <div id="demandes" class="card mb-4 mt-4 rounded-4 shadow-sm border-0" style="background:white">
-            <div class="card-header bg-white rounded-top-4 border-0 pt-4 d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 fw-bold" style="color: #1e3a5f;"><i class="fas fa-clock me-2 text-warning"></i> Demandes en attente</h5>
+            <div
+                class="card-header bg-white rounded-top-4 border-0 pt-4 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold" style="color: #1e3a5f;"><i class="fas fa-clock me-2 text-warning"></i> Demandes
+                    en attente</h5>
             </div>
             <div class="card-body">
                 <?php if(isset($demandes) && $demandes->count() > 0): ?>
@@ -168,8 +182,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="<?php echo e(route('manager.conges.show', $demande->id)); ?>"
-                                        class="btn btn-sm" style="background: #1e3a5f; color: white;">
+                                    <a href="<?php echo e(route('manager.conges.show', $demande->id)); ?>" class="btn btn-sm"
+                                        style="background: #1e3a5f; color: white;">
                                         <i class="fas fa-eye"></i> Traiter
                                     </a>
                                 </div>

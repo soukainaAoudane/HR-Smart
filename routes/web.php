@@ -12,6 +12,7 @@ use App\Http\Controllers\Manager\CompetenceController as ManagerCompetenceContro
 use App\Http\Controllers\Manager\CongeController as ManagerCongeController;
 use App\Http\Controllers\Manager\DeplacementController as ManagerDeplacementController;
 use App\Http\Controllers\Manager\ManagerDashboardController;
+use App\Http\Controllers\Manager\ProjetController;
 use App\Http\Controllers\Manager\TacheController as ManagerTacheController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -93,6 +94,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/competences/{id}', [ManagerCompetenceController::class, 'show'])->name('competences.show');
         Route::post('/competences/{employeId}/{competenceId}/valider', [ManagerCompetenceController::class, 'valider'])->name('competences.valider');
         Route::post('/competences/{employeId}/{competenceId}/refuser', [ManagerCompetenceController::class, 'refuser'])->name('competences.refuser');
+
+        Route::get('/projets', [ProjetController::class, 'index'])->name('projet.index');
+        Route::get('/projet/create', [ProjetController::class, 'create'])->name('projet.create');
+        Route::post('/projet/store', [ProjetController::class, 'store'])->name('projet.store');
+        Route::get('/projet/{id}', [ProjetController::class, 'show'])->name('projet.show');
+        Route::get('/projet/{id}/edit', [ProjetController::class, 'edit'])->name('projet.edit');
+        Route::put('/projet/{id}', [ProjetController::class, 'update'])->name('projet.update');
+        Route::delete('/projet/{id}', [ProjetController::class, 'destroy'])->name('projet.destroy');
+        Route::post('/projet/{id}/tache', [ProjetController::class, 'addTache'])->name('projet.addTache');
     });
 
     Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {

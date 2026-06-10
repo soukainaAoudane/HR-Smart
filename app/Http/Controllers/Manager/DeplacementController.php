@@ -63,7 +63,7 @@ class DeplacementController extends Controller
     }
 
     /**
-     * Methode refuser: 
+     * Methode refuser:
      */
     public function refuser(Request $request, $id)
     {

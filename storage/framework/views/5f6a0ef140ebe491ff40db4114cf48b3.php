@@ -260,7 +260,7 @@
                         <i class="fas fa-tasks"></i>
                         <span>Gestion tâches</span>
                     </a>
-                    <a href=""
+                    <a href="<?php echo e(route('manager.projet.index')); ?>"
                         class="nav-link-sidebar <?php echo e(request()->routeIs('manager.projet.index') ? 'active' : ''); ?>">
                         <i class="fas fa-project-diagram"></i>
                         <span>Gestion projets</span>

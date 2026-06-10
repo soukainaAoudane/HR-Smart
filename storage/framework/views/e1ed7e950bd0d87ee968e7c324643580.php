@@ -11,17 +11,17 @@
     <div class="container py-4">
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-header text-white rounded-top-4" style="background: #1e3a5f;">
-                <h4 class="mb-0 fw-bold">🤖 Propositions de remplacement</h4>
+                <h4 class="mb-0 fw-bold">Propositions de remplacement</h4>
             </div>
             <div class="card-body p-4">
-                
+
                 <?php if($propositions->count() > 0): ?>
                     <div class="alert alert-success mb-4">
                         <i class="fas fa-check-circle me-2"></i>
                         Congé de <strong><?php echo e($conge->user->name); ?></strong> accepté.
                         Voici les meilleurs remplaçants :
                     </div>
-                    
+
                     <div class="row">
                         <?php $__currentLoopData = $propositions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proposition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-md-6 mb-4">
@@ -34,11 +34,11 @@
                                             </span>
                                         </div>
                                         <p class="text-muted small mb-2">
-                                            <i class="fas fa-briefcase me-1"></i> 
+                                            <i class="fas fa-briefcase me-1"></i>
                                             <?php echo e($proposition['employe']->poste ?? 'Employé'); ?>
 
                                         </p>
-                                        
+
                                         
                                         <div class="mb-3">
                                             <div class="d-flex justify-content-between small mb-1">
@@ -70,7 +70,7 @@
                                                 <div class="progress-bar bg-danger" style="width: <?php echo e($proposition['details']['performance']); ?>%"></div>
                                             </div>
                                         </div>
-                                        
+
                                         <form action="<?php echo e(route('manager.conge.proposer', $conge->id)); ?>" method="POST">
                                             <?php echo csrf_field(); ?>
                                             <input type="hidden" name="remplacant_id" value="<?php echo e($proposition['employe']->id); ?>">
@@ -104,4 +104,5 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?><?php /**PATH C:\gestionstagiaires\resources\views/manager/conge/propositions.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+<?php /**PATH C:\gestionstagiaires\resources\views/manager/conge/propositions.blade.php ENDPATH**/ ?>

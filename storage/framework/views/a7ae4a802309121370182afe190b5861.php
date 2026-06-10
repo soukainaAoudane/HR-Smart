@@ -13,7 +13,7 @@
 
             <!-- Colonne gauche - Formulaire -->
             <div class="col-lg-6 d-flex align-items-center justify-content-center p-3 p-md-4"
-                style="background: #f0ebd8; min-height: 100vh;">
+                style="background: white; min-height: 100vh;">
                 <div class="w-100" style="max-width: 400px;">
 
                     <!-- Logo et titre -->
