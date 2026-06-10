@@ -265,16 +265,19 @@
                         <i class="fas fa-project-diagram"></i>
                         <span>Gestion projets</span>
                     </a>
+                    <a href="<?php echo e(route('manager.competences.index')); ?>" class="nav-link-sidebar">
+                        <i class="fas fa-star"></i>
+                        <span>Valider compétences</span>
+                    </a>
                 <?php endif; ?>
 
-          <?php if(Auth::user()->isAdmin()): ?>
+                <?php if(Auth::user()->isAdmin()): ?>
                     <a href="<?php echo e(route('admin.dashboard')); ?>"
                         class="nav-link-sidebar <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Tableau de bord</span>
                     </a>
-                    <a href="<?php echo e(route('admin.employes.index')); ?>"
-                        class="nav-link-sidebar <?php echo e(request()->routeIs('admin.employes.index') ? 'active' : ''); ?>">
+                    <a href="<?php echo e(route('admin.employes.index')); ?>" class="nav-link-sidebar">
                         <i class="fas fa-users"></i>
                         <span>Gestion employés</span>
                     </a>

@@ -27,7 +27,7 @@ class EmployeDashboardController extends Controller
 
         $performanceActuelle = $performanceService->getPerformanceActuelle($employe);
         $evolution = $performanceService->getEvolution($employe, 6);
-
         return view('employe.dashboard', compact('employe', 'manager', 'congesRestants', 'taches', 'tachesEnCours', 'mesCompetences', 'mesDeplacements', 'cinqDerniersConges', 'performanceActuelle', 'evolution'));
     }
+
 }

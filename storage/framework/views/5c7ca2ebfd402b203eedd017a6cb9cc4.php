@@ -8,6 +8,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+    
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -20,16 +21,17 @@
                     </div>
                     <div class="card-body p-4">
 
-                        <div class="alert mb-4 rounded-3 text-center fw-bold fs-5 
+                        <div
+                            class="alert mb-4 rounded-3 text-center fw-bold fs-5
                             <?php if($tache->statut == 'todo'): ?> alert-warning text-dark
                             <?php elseif($tache->statut == 'doing'): ?> alert-info
                             <?php else: ?> alert-success <?php endif; ?>">
                             <?php if($tache->statut == 'todo'): ?>
-                                📌 Statut : À faire
+                                Statut : À faire
                             <?php elseif($tache->statut == 'doing'): ?>
-                                🔄 Statut : En cours
+                                tatut : En cours
                             <?php else: ?>
-                                ✅ Statut : Terminée
+                                tatut : Terminée
                             <?php endif; ?>
                         </div>
 
@@ -79,15 +81,17 @@
                         </div>
 
                         <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                            <a href="<?php echo e(route('manager.tache.index')); ?>" class="btn btn-outline-secondary rounded-pill px-4">
+                            <a href="<?php echo e(route('manager.tache.index')); ?>"
+                                class="btn btn-outline-secondary rounded-pill px-4">
                                 <i class="fas fa-arrow-left me-2"></i> Retour
                             </a>
                             <div>
-                                <a href="<?php echo e(route('manager.tache.edit', $tache->id)); ?>" class="btn rounded-pill px-4" style="background: #ffc107; color: #000;">
+                                <a href="<?php echo e(route('manager.tache.edit', $tache->id)); ?>" class="btn rounded-pill px-4"
+                                    style="background: #ffc107; color: #000;">
                                     <i class="fas fa-edit me-2"></i> Modifier
                                 </a>
-                                <form action="<?php echo e(route('manager.tache.destroy', $tache->id)); ?>" method="POST" class="d-inline" 
-                                      onsubmit="return confirm('Supprimer cette tâche ?')">
+                                <form action="<?php echo e(route('manager.tache.destroy', $tache->id)); ?>" method="POST"
+                                    class="d-inline" onsubmit="return confirm('Supprimer cette tâche ?')">
                                     <?php echo csrf_field(); ?>
                                     <?php echo method_field('DELETE'); ?>
                                     <button type="submit" class="btn btn-danger rounded-pill px-4">
@@ -110,4 +114,5 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?><?php /**PATH C:\gestionstagiaires\resources\views/manager/tache/show.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+<?php /**PATH C:\gestionstagiaires\resources\views/manager/tache/show.blade.php ENDPATH**/ ?>

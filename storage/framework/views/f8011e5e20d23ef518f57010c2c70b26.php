@@ -8,42 +8,40 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-    
     <div class="container py-4">
-        <div class="card shadow-sm">
-            <div class="card-header  text-dark">
-                <h4 class="mb-0"><i class="fas fa-plane me-2"></i> Demandes de déplacement</h4>
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-header text-white rounded-top-4" style="background: #1e3a5f;">
+                <h4 class="mb-0 fw-bold">📋 Validation des compétences</h4>
             </div>
-            <div class="card-body">
-                <?php if(session('success')): ?>
-                    <div class="alert alert-success"><?php echo e(session('success')); ?></div>
-                <?php endif; ?>
-
-                <?php if($deplacements->count() > 0): ?>
+            <div class="card-body p-4">
+                <?php if($employes->count() > 0): ?>
                     <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-hover align-middle">
+                            <thead style="background-color: #e8f0fe;">
                                 <tr>
                                     <th>Employé</th>
-                                    <th>Dates</th>
-                                    <th>Lieu</th>
-                                    <th>Frais</th>
+                                    <th>Email</th>
+                                    <th>Compétences</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $__currentLoopData = $deplacements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $deplacement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $employes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employe): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><strong><?php echo e($deplacement->user->name); ?></strong></td>
+                                    <td><strong><?php echo e($employe->name); ?></strong></td>
+                                    <td><?php echo e($employe->email); ?></td>
                                     <td>
-                                        <?php echo e(\Carbon\Carbon::parse($deplacement->date_debut)->format('d/m/Y')); ?><br>
-                                        <small>→ <?php echo e(\Carbon\Carbon::parse($deplacement->date_fin)->format('d/m/Y')); ?></small>
+                                        <?php
+                                            $nonValidees = $employe->competences()->wherePivot('validee', false)->count();
+                                        ?>
+                                        <span class="badge rounded-pill px-3 py-2" style="background: #ffc107; color: #000;">
+                                            <?php echo e($nonValidees); ?> en attente
+                                        </span>
                                     </td>
-                                    <td><?php echo e($deplacement->lieu); ?></td>
-                                    <td><?php echo e(number_format($deplacement->frais_total, 2)); ?> DH</td>
                                     <td>
-                                        <a href="<?php echo e(route('manager.deplacement.show', $deplacement->id)); ?>" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-eye"></i> Traiter
+                                        <a href="<?php echo e(route('manager.competences.show', $employe->id)); ?>" 
+                                           class="btn btn-sm rounded-pill px-3" style="background: #1e3a5f; color: white;">
+                                            <i class="fas fa-eye me-1"></i> Valider
                                         </a>
                                     </td>
                                 </tr>
@@ -53,8 +51,7 @@
                     </div>
                 <?php else: ?>
                     <div class="text-center py-5">
-                        <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
-                        <p class="text-muted">Aucune demande en attente</p>
+                        <p class="text-muted">Aucun employé dans votre équipe</p>
                     </div>
                 <?php endif; ?>
             </div>
@@ -69,5 +66,4 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
-<?php /**PATH C:\gestionstagiaires\resources\views/manager/deplacement/index.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\gestionstagiaires\resources\views/manager/competences/index.blade.php ENDPATH**/ ?>

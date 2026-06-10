@@ -8,17 +8,19 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+    
     <div class="container py-4">
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-header text-white rounded-top-4 d-flex justify-content-between align-items-center" style="background: #1e3a5f; border-bottom: none;">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-tasks fs-4 me-3"></i>
-                    <h4 class="mb-0 fw-bold">Gestion des tâches</h4>
+                    <h4 class="mb-0 fw-bold">Gestion des tâcches</h4>
                 </div>
                 <a href="<?php echo e(route('manager.tache.create')); ?>" class="btn btn-light btn-sm rounded-pill px-3">
                     <i class="fas fa-plus me-1"></i> Nouvelle tâche
                 </a>
             </div>
+
             <div class="card-body p-4">
                 <?php if(session('success')): ?>
                     <div class="alert alert-success alert-dismissible fade show rounded-3" role="alert">
@@ -94,4 +96,5 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?><?php /**PATH C:\gestionstagiaires\resources\views/manager/tache/index.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+<?php /**PATH C:\gestionstagiaires\resources\views/manager/tache/index.blade.php ENDPATH**/ ?>

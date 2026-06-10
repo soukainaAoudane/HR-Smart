@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="card-body p-4">
-                        
+
                         <?php if(session('error')): ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <i class="fas fa-circle-exclamation me-2"></i>
@@ -36,7 +36,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>
                         <?php endif; ?>
-                        
+
                         <?php if(session('success')): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="fas fa-check-circle me-2"></i>
@@ -63,7 +63,7 @@
                             method="POST"
                             enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
-                            
+
                             <div class="mb-4">
                                 <label for="type" class="form-label fw-semibold">
                                     <i class="fas fa-tag text-info me-2"></i>
@@ -79,7 +79,7 @@
                                     <i class="fas fa-info-circle me-1"></i> Sélectionnez le type de congé souhaité
                                 </small>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="mb-4" id="div_heures" style="display:none;">
                                 <label class="form-label fw-semibold">
                                     <i class="fas fa-clock text-warning me-2"></i>
@@ -143,7 +143,7 @@
                                     Chaque 7h supplémentaires = 1 jour RTT
                                 </small>
                             </div>
-                            
+
                             <div class="mb-4" id="div_justificatif" style="display:none;">
                                 <label class="form-label fw-semibold">
                                     <i class="fas fa-file-pdf text-danger me-2"></i>
@@ -163,7 +163,7 @@
                                     Convention de formation ou document justificatif (PDF, DOC, DOCX)
                                 </small>
                             </div>
-                            
+
                             <div class="mb-4">
                                 <label class="form-label fw-semibold">
                                     <i class="fas fa-edit text-secondary me-2"></i>
@@ -179,14 +179,14 @@
                                     Expliquez la raison de votre demande de congé
                                 </small>
                             </div>
-                            
+
                             <div class="alert alert-warning"
                                 id="warning_sans_solde"
                                 style="display:none;">
                                 <i class="fas fa-exclamation-triangle me-2 fs-5"></i>
                                 <strong>Attention :</strong> Vous Vous avee des congés payé veuillez vous les demander
                             </div>
-                            
+
                             <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                                 <a href="<?php echo e(route('employe.dashboard')); ?>"
                                     class="btn btn-outline-secondary px-4">
@@ -275,4 +275,5 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?><?php /**PATH C:\gestionstagiaires\resources\views/employe/conge/create.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+<?php /**PATH C:\gestionstagiaires\resources\views/employe/conge/create.blade.php ENDPATH**/ ?>

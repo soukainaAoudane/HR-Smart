@@ -265,16 +265,19 @@
                         <i class="fas fa-project-diagram"></i>
                         <span>Gestion projets</span>
                     </a>
+                    <a href="{{ route('manager.competences.index') }}" class="nav-link-sidebar">
+                        <i class="fas fa-star"></i>
+                        <span>Valider compétences</span>
+                    </a>
                 @endif
 
-          @if (Auth::user()->isAdmin())
+                @if (Auth::user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}"
                         class="nav-link-sidebar {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Tableau de bord</span>
                     </a>
-                    <a href="{{ route('admin.employes.index') }}"
-                        class="nav-link-sidebar {{ request()->routeIs('admin.employes.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.employes.index') }}" class="nav-link-sidebar">
                         <i class="fas fa-users"></i>
                         <span>Gestion employés</span>
                     </a>

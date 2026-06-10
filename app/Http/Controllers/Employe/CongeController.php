@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Employe;
 
 use App\Http\Controllers\Controller;
 use App\Models\Conge;
+use App\Models\Remplacement;
+use App\Services\MatchingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -103,4 +105,33 @@ class CongeController extends Controller
 
         return redirect()->route('employe.conge.index')->with('success', 'Demande annulée');
     }
+
+    public function accepterRemplacement($id)
+{
+    $remplacement = Remplacement::findOrFail($id);
+
+    if ($remplacement->remplacant_id != Auth::id()) {
+        abort(403);
+    }
+
+    $matchingService = app(MatchingService::class);
+    $matchingService->accepterRemplacement($remplacement);
+
+    return redirect()->route('employe.dashboard')
+        ->with('success', 'Vous avez accepté le remplacement. Les tâches ont été transférées.');
+}
+
+public function refuserRemplacement($id)
+{
+    $remplacement = Remplacement::findOrFail($id);
+
+    if ($remplacement->remplacant_id != Auth::id()) {
+        abort(403);
+    }
+
+    $remplacement->refuser();
+
+    return redirect()->route('employe.dashboard')
+        ->with('info', 'Vous avez refusé le remplacement.');
+}
 }

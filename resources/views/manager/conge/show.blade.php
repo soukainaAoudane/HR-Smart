@@ -99,6 +99,7 @@
             <div class="modal-content">
                 <form method="POST" action="{{ route('manager.conges.refuser', $demande->id) }}">
                     @csrf
+                    @method('POST')
                     <div class="modal-header bg-danger text-white">
                         <h5 class="modal-title">Refuser le congé</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>

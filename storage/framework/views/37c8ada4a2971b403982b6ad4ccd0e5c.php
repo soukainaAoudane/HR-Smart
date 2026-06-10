@@ -8,6 +8,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+    
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -107,6 +108,7 @@
             <div class="modal-content">
                 <form method="POST" action="<?php echo e(route('manager.conges.refuser', $demande->id)); ?>">
                     <?php echo csrf_field(); ?>
+                    <?php echo method_field('POST'); ?>
                     <div class="modal-header bg-danger text-white">
                         <h5 class="modal-title">Refuser le congé</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>

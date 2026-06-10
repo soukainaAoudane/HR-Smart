@@ -3,7 +3,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPasswordNotification;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -83,15 +82,27 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
-    public function competencesValidees()
-    {
-        return $this->competences()->wherePivot('validee', true);
-    }
+   /**
+ * Compétences validées par le manager
+ */
+public function competencesValidees()
+{
+    return $this->belongsToMany(Competence::class, 'user_competences')
+                ->withPivot('niveau', 'validee', 'validee_par')
+                ->wherePivot('validee', true)
+                ->withTimestamps();
+}
 
-    public function competencesEnAttente()
-    {
-        return $this->competences()->wherePivot('validee', false);
-    }
+/**
+ * Compétences en attente de validation
+ */
+public function competencesEnAttente()
+{
+    return $this->belongsToMany(Competence::class, 'user_competences')
+                ->withPivot('niveau', 'validee', 'validee_par')
+                ->wherePivot('validee', false)
+                ->withTimestamps();
+}
 
     public function sendPasswordResetNotification($token): void
     {

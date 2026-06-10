@@ -9,6 +9,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+    
     <div class="container">
         <div class="row mb-4">
             <div class="col-12">
@@ -28,6 +29,7 @@
                 <h4 class="mb-3 text-dark">Actions rapides</h4>
             </div>
 
+            
             <div class="col-md-3 col-6 mb-3">
                 <a href="#tachesEnCours" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -43,6 +45,7 @@
                 </a>
             </div>
 
+            
             <div class="col-md-3 col-6">
                 <a href="mesDeplacements" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -58,6 +61,7 @@
                 </a>
             </div>
 
+            
             <div class="col-md-3 col-6 mb-3">
                 <a href="#congesRestants" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -73,6 +77,7 @@
                 </a>
             </div>
 
+            
             <div class="col-md-3 col-6 mb-3">
                 <a href="#performance" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -88,6 +93,7 @@
                 </a>
             </div>
 
+            
             <div class="col-md-3 col-6 mb-3">
                 <a href="#competences" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0" style="background: white;">
@@ -113,7 +119,6 @@
                 <span class="text-decoration-underline text-primary"><a href="<?php echo e(route('employe.tache.index')); ?>">Voir
                         toutes les tâc hes</a></span>
             </div>
-
             <div class="card-body">
                 <?php if(isset($taches) && $taches->count() > 0): ?>
                     <?php $__currentLoopData = $taches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tache): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -216,10 +221,11 @@
             </div>
         </div>
 
+        
         <div id="mesDeplacements" class = "card mb-4 rounded-4 shadow-sm border-0">
             <div class="card-header bg-white rounded-top-4 border-0 pt-4">
                 <h5 class="mb-0 fw-bold text-dark">
-                    <i class="fas fa-car m2"></i>Mes Déplaacements
+                    <i class="fas fa-car m2"></i>Mes Déplacements
                 </h5>
                 <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
                     <?php echo e($mesDeplacements->count() ?? 0); ?>
@@ -357,6 +363,7 @@
             </div>
         </div>
 
+        
         <div id="performance" class="card mb-4 mt-4 rounded-4 shadow-sm border-0" style="background: white">
             <div class="card-header bg-white rounded-top-4 border-0 pt-4">
                 <h5 class="mb-0 fw-bold" style="color: #1e3a5f;">
@@ -367,6 +374,7 @@
                 <canvas id="performanceChart" width="400" height="200"></canvas>
             </div>
         </div>
+        
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>

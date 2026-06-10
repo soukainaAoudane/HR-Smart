@@ -20,6 +20,7 @@
                 <h4 class="mb-3 text-dark">Actions rapides</h4>
             </div>
 
+            {{-- Taches en cours --}}
             <div class="col-md-3 col-6 mb-3">
                 <a href="#tachesEnCours" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -35,6 +36,7 @@
                 </a>
             </div>
 
+            {{-- Déplacements --}}
             <div class="col-md-3 col-6">
                 <a href="mesDeplacements" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -50,6 +52,7 @@
                 </a>
             </div>
 
+            {{-- Conges restats --}}
             <div class="col-md-3 col-6 mb-3">
                 <a href="#congesRestants" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -65,6 +68,7 @@
                 </a>
             </div>
 
+            {{-- performances --}}
             <div class="col-md-3 col-6 mb-3">
                 <a href="#performance" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0"
@@ -80,6 +84,7 @@
                 </a>
             </div>
 
+            {{-- competences --}}
             <div class="col-md-3 col-6 mb-3">
                 <a href="#competences" class="text-decoration-none">
                     <div class="card rounded-4 text-center shadow-sm stat-card border-0" style="background: white;">
@@ -105,7 +110,6 @@
                 <span class="text-decoration-underline text-primary"><a href="{{ route('employe.tache.index') }}">Voir
                         toutes les tâc hes</a></span>
             </div>
-
             <div class="card-body">
                 @if (isset($taches) && $taches->count() > 0)
                     @foreach ($taches as $tache)
@@ -205,10 +209,11 @@
             </div>
         </div>
 
+        {{-- Déplacements --}}
         <div id="mesDeplacements" class = "card mb-4 rounded-4 shadow-sm border-0">
             <div class="card-header bg-white rounded-top-4 border-0 pt-4">
                 <h5 class="mb-0 fw-bold text-dark">
-                    <i class="fas fa-car m2"></i>Mes Déplaacements
+                    <i class="fas fa-car m2"></i>Mes Déplacements
                 </h5>
                 <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
                     {{ $mesDeplacements->count() ?? 0 }}
@@ -342,6 +347,7 @@
             </div>
         </div>
 
+        {{-- Performances --}}
         <div id="performance" class="card mb-4 mt-4 rounded-4 shadow-sm border-0" style="background: white">
             <div class="card-header bg-white rounded-top-4 border-0 pt-4">
                 <h5 class="mb-0 fw-bold" style="color: #1e3a5f;">
@@ -352,4 +358,5 @@
                 <canvas id="performanceChart" width="400" height="200"></canvas>
             </div>
         </div>
+        
 </x-app-layout>
